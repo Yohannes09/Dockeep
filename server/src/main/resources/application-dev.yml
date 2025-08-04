@@ -10,9 +10,6 @@ spring:
           google:
             client-id: ${GOOGLE_OAUTH2_CLIENT_ID}
             client-secret: ${GOOGLE_OAUTH2_CLIENT_SECRET}
-#            client-id: 363316280058-cs44ma0up4a7s3gr8fl2aabsegnv978c.apps.googleusercontent.com
-#            client-secret: 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
-            # redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
             scope:
               - openid
               - profile
