@@ -1,0 +1,29 @@
+type Document {
+    id: ID!
+    title: String!
+    owner: User!
+    metadata: DocumentMetadata!
+    encryption: EncryptionMetadata!
+    s3Path: String!
+    createdAt: String!
+    updatedAt: String!
+    versions: [Version!]
+    shares: [Share!]
+}
+
+type DocumentMetadata {
+    fileSize: Int!
+    mimeType: String!
+    tags: [String!]
+}
+
+type EncryptionMetadata {
+    keyId: String!
+    status: String!
+}
+
+input DocumentUploadInput {
+    title: String!
+    file: Upload!
+    tags: [String!]
+}

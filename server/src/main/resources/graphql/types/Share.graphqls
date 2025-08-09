@@ -1,0 +1,14 @@
+type Share {
+    id: ID!
+    document: Document!
+    recipient: User
+    email: String
+    permission: PermissionType!
+    publicLink: String
+    createdAt: String!
+}
+
+enum PermissionType {
+    READ
+    WRITE
+}

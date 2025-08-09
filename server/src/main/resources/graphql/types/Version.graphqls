@@ -1,0 +1,7 @@
+type Version {
+    id: ID!
+    document: Document!
+    versionNumber: Int!
+    s3Path: String!
+    createdAt: String!
+}

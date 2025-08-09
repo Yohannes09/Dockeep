@@ -1,0 +1,29 @@
+type DocumentQueries {
+    getDocument(documentId: ID!): Document
+    listDocuments(maxResults: Int, startAfterCursor: String): DocumentConnection
+    searchDocuments(searchQuery: String!, maxResults: Int, startAfterCursor: String): DocumentConnection
+    sharedWithMe(maxResults: Int, startAfterCursor: String): DocumentConnection
+}
+
+type DocumentConnection {
+    edges: [DocumentEdge!]!
+
+    pageInfo: PageInfo!
+}
+
+type DocumentEdge {
+    node: Document!
+    cursor: String!
+}
+
+type PageInfo {
+
+    # Assume maxResults = 10. If the user has another page of documents
+    # true will be returned.
+    hasNextPage: Boolean!
+
+    # After traversing the user's page of documents, endCursor represents the ID
+    # or unique identifier of the final document in the user's page.
+    # This helps reference the first element of the next page.
+    endCursor: String
+}
