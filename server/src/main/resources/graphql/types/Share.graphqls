@@ -2,13 +2,12 @@ type Share {
     id: ID!
     document: Document!
     recipient: User
-    email: String
-    permission: PermissionType!
-    publicLink: String
-    createdAt: String!
+    permissions: [DocumentSharePermission]!
+    s3Path: String
+    beganSharingAt: DateTime!
 }
 
-enum PermissionType {
+enum DocumentSharePermission {
     READ
     WRITE
 }
