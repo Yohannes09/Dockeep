@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5dea37a9-1b40-4bb7-92f9-83baab83d7ba" name="Changes" comment="" />
+    <list default="true" id="5dea37a9-1b40-4bb7-92f9-83baab83d7ba" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/demo/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/demo/auth/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/demo/user/CustomOAuth2User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/demo/document/service/DocService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/demo/document/service/DocService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application-dev.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,15 +20,15 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Yohannes09"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Yohannes09&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
-    "url": "https://github.com/Yohannes09/Dockeep.git",
+    "url": "https://github.com/Yohannes09/Dockeep",
     "accountId": "033458bd-6d91-480f-8757-ce328e7eea76"
   }
 }]]></component>
@@ -32,9 +39,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="30kz5C6igdA9867kReUt7yqeqqt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -55,8 +62,10 @@
     "RunOnceActivity.DeprecatedChatLlmMigration": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.ToggleCodyToolWindowAfterMigration": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/yohannesmata/DEVELOPMENT/dockeep",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/yohannesmata/DEVELOPMENT/Dockeep",
     "settings.editor.selected.configurable": "configurable.group.other"
   }
 }]]></component>

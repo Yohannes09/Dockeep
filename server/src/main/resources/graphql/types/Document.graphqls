@@ -6,9 +6,3 @@ type Document {
     createdAt: String!
     shares: [Share!]
 }
-
-input DocumentUploadInput {
-    title: String!
-    file: Upload!
-    tags: [String!]
-}
