@@ -6,3 +6,12 @@ type Document {
     createdAt: String!
     shares: [Share!]
 }
+
+# Gragphql equivalent of Page<DocumentDto>
+type DocumentPage{
+    documents: [Document]
+    pageNumber: Int
+    pageSize: Int
+    totalElements: Int
+    totalPages: Int
+}

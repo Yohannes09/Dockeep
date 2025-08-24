@@ -1,5 +1,6 @@
 package com.dockeep.document.request;
 
+import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,6 +14,9 @@ public record DocumentUploadRequest(
         List<@NotBlank(message = "A tag must contain at least one character.") String> tags,
 
         @NotNull(message = "Attach a file.")
-        MultipartFile file
+        MultipartFile file,
+
+        @Nullable
+        Long documentId
 ) {
 }

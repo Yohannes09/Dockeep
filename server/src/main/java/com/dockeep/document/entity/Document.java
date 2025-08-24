@@ -6,8 +6,7 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Table
@@ -33,17 +32,27 @@ public class Document {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
-    @ManyToOne
-    private User owner;
-
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @Column
+    @ManyToOne
+    @Column(nullable = false)
+    private User owner;
+
     @OneToMany
-    private List<DocumentShare> shares = new ArrayList<>();
+    @Column
+    private Set<DocumentShare> shares = new HashSet<>();
+
+    @OneToMany(mappedBy = "document")
+    @Column(name = "document_version")
+    private List<DocumentVersion> documentVersions = new ArrayList<>();
 
     private List<String> tags = new ArrayList<>();
+
+    public Optional<DocumentVersion> getCurrentVersion(){
+        return documentVersions
+                .stream()
+                .max(Comparator.comparing(DocumentVersion::getLastModified));
+    }
 }

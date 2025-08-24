@@ -1,10 +1,7 @@
 package com.dockeep.document.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
+@Builder
 public class DocumentVersion {
     @Id
     @GeneratedValue(
@@ -38,7 +36,7 @@ public class DocumentVersion {
     private Integer versionNumber;
 
     @Column(name = "s3_path", nullable = false, updatable = false)
-    private String s3Path;
+    private String s3Key;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
@@ -47,7 +45,7 @@ public class DocumentVersion {
     private LocalDateTime lastModified;
 
     @Column(name = "file_size", nullable = false, updatable = false)
-    private Integer fileSize;
+    private Long fileSize;
 
     private String mimeType;
 
