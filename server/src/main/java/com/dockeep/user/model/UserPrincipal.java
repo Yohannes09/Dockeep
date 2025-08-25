@@ -1,6 +1,5 @@
-package com.dockeep.user;
+package com.dockeep.user.model;
 
-import com.dockeep.authorization.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -21,7 +19,7 @@ public class UserPrincipal implements UserDetails {
     private Long id;
     private String username;
     private final String password = "N/A";
-    private Set<Role> roles = new HashSet<>();
+    private Set<String> authorities = new HashSet<>();
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
@@ -30,25 +28,10 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> roleAuthorities = roles
+        return authorities
                 .stream()
-                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
+                .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
-
-        Set<GrantedAuthority> permissionAuthorities = roles
-                .stream()
-                .flatMap(role ->
-                        role
-                                .getPermissions()
-                                .stream()
-                                .map(permission -> new SimpleGrantedAuthority(permission.getName()))
-                )
-                .collect(Collectors.toSet());
-
-        Set<GrantedAuthority> authorities = new HashSet<>(roleAuthorities);
-        authorities.addAll(permissionAuthorities);
-
-        return authorities;
     }
 
     @Override
@@ -80,4 +63,5 @@ public class UserPrincipal implements UserDetails {
     public boolean isEnabled() {
         return isEnabled;
     }
+
 }

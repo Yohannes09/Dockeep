@@ -1,6 +1,0 @@
-enum Permission{
-    READ
-    WRITE
-    EDIT
-    DELETE
-}

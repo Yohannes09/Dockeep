@@ -1,6 +1,6 @@
 package com.dockeep.document.entity;
 
-import com.dockeep.user.User;
+import com.dockeep.user.model.User;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -9,7 +9,10 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 @Entity
-@Table
+@Table(
+        name = "document",
+        indexes = @Index(name = "idx_docs_owner_id", columnList = "owner_id")
+)
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -37,14 +40,13 @@ public class Document {
     private LocalDateTime createdAt;
 
     @ManyToOne
-    @Column(nullable = false)
     private User owner;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @Column
     private Set<DocumentShare> shares = new HashSet<>();
 
-    @OneToMany(mappedBy = "document")
+    @OneToMany(mappedBy = "document", cascade = CascadeType.ALL)
     @Column(name = "document_version")
     private List<DocumentVersion> documentVersions = new ArrayList<>();
 

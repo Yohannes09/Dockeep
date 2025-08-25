@@ -1,5 +1,6 @@
 package com.dockeep.user;
 
+import com.dockeep.user.model.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,4 +15,5 @@ public class UserService {
                 .findById(id)
                 .orElseThrow();
     }
+
 }

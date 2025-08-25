@@ -2,7 +2,7 @@ package com.dockeep.document.dto;
 
 import com.dockeep.document.entity.DocumentShare;
 import com.dockeep.document.entity.DocumentVersion;
-import com.dockeep.user.UserDto;
+import com.dockeep.user.model.UserDto;
 
 import java.time.LocalDateTime;
 import java.util.List;

@@ -4,7 +4,7 @@ type Document {
     owner: User!
     tags: [String!]
     createdAt: String!
-    shares: [Share!]
+#    shares: [Share!]
 }
 
 # Gragphql equivalent of Page<DocumentDto>

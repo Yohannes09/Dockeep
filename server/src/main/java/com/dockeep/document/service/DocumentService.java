@@ -9,16 +9,14 @@ import com.dockeep.document.mapper.DocumentMapper;
 import com.dockeep.document.repository.DocumentRepository;
 import com.dockeep.document.request.DocumentUploadRequest;
 import com.dockeep.s3.S3Service;
-import com.dockeep.user.User;
-import com.dockeep.user.UserPrincipal;
+import com.dockeep.user.util.PrincipalExtractor;
+import com.dockeep.user.model.User;
 import com.dockeep.user.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -28,32 +26,33 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DocumentService {
     private final DocumentMapper documentMapper;
+    private final PrincipalExtractor principalExtractor;
     private final S3Service s3Service;
     private final UserService userService;
     private final DocumentRepository documentRepository;
 
 
     @Transactional
-    public DocumentVersion uploadFile(DocumentUploadRequest uploadRequest, Authentication authentication) throws IOException {
-        UserPrincipal ownerPrincipal = (UserPrincipal) authentication.getPrincipal();
-        User owner = userService.findEntityById(ownerPrincipal.getId());
+    public DocumentVersion uploadFile(DocumentUploadRequest uploadRequest) throws IOException {
+        Long ownerId = principalExtractor.extract().getId();
+        User owner = userService.findEntityById(ownerId);
 
-        Document document;
-        int version;
+        Document document = switch (uploadRequest.documentId()) {
+            case null -> Document.builder()
+                        .owner(owner)
+                        .title(uploadRequest.title())
+                        .tags(uploadRequest.tags())
+                        .build();
 
-        if(uploadRequest.documentId() != null){
-            document = documentRepository
+            default -> documentRepository
                     .findById(uploadRequest.documentId())
-                    .orElseThrow(()-> new DocumentNotFoundException("Document"));
-            version = document.getDocumentVersions().size();
-        }else {
-            version = 1;
-            document = Document.builder()
-                .owner(owner)
-                .title(uploadRequest.title())
-                .tags(uploadRequest.tags())
-                .build();
-        }
+                    .orElseThrow(()-> new DocumentNotFoundException("The document you are trying to update was not found."));
+        };
+
+        int version = switch (document.getDocumentVersions().size()){
+            case 0 -> 1;
+            default -> document.getDocumentVersions().size();
+        };
 
         String s3Key = s3Service.uploadFile(uploadRequest.file(), uploadRequest.title());
 
@@ -71,15 +70,17 @@ public class DocumentService {
         return documentVersion;
     }
 
-    public DocumentPageDto getDocuments(Long id, int pageNumber, int pageSize){
+    // Refactor to remove ID and extract from principal instead.
+    public DocumentPageDto getDocuments(int pageNumber, int pageSize){
         final String sortByProperty = "createdAt";
+        Long ownerId = principalExtractor.extract().getId();
 
         Pageable pageable = PageRequest.of(
                 pageNumber, pageSize, Sort.by(sortByProperty).descending()
         );
 
         List<DocumentDto> documents = documentRepository
-                .findAllByUserId(id, pageable)
+                .findAllByOwnerId(ownerId, pageable)
                 .map(documentMapper::entityToDto)
                 .toList();
 
@@ -91,4 +92,21 @@ public class DocumentService {
                 .build();
     }
 
+    public int deleteAllById(List<Long> ids){
+        return documentRepository.deleteAllById(ids);
+    }
+
 }
+//if(uploadRequest.documentId() != null){
+//document = documentRepository
+//        .findById(uploadRequest.documentId())
+//        .orElseThrow(()-> new DocumentNotFoundException("The document you are trying to update was not found."));
+//version = document.getDocumentVersions().size();
+//        }else {
+//version = 1;
+//document = Document.builder()
+//                .owner(owner)
+//                .title(uploadRequest.title())
+//        .tags(uploadRequest.tags())
+//        .build();
+//        }

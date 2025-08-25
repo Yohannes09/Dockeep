@@ -28,7 +28,6 @@ public class DocumentVersion {
     )
     private Long id;
 
-    @Column(name = "document", nullable = false)
     @ManyToOne
     private Document document;
 

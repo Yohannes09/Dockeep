@@ -1,7 +1,7 @@
 package com.dockeep.document.entity;
 
 import com.dockeep.document.constant.DocumentSharePermission;
-import com.dockeep.user.User;
+import com.dockeep.user.model.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -6,34 +6,30 @@ import com.dockeep.document.entity.DocumentVersion;
 import com.dockeep.document.request.DocumentUploadRequest;
 import com.dockeep.document.response.DocumentUploadResponse;
 import com.dockeep.document.service.DocumentService;
-import com.dockeep.s3.S3Service;
-import com.dockeep.user.UserPrincipal;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
-import java.util.Optional;
+import java.util.List;
 
 @RestController
-@RequestMapping("${endpoints.documents.base:/api/v1}")
+@RequestMapping("${endpoints.documents.base:/v1/documents}")
 @RequiredArgsConstructor
 public class DocumentsController {
     private final DocumentService documentService;
-    private final S3Service s3Service;
 
-    @PostMapping("/documents")
+    @PostMapping
     public ResponseEntity<DocumentUploadResponse> uploadDocument(
-            @Valid @ModelAttribute DocumentUploadRequest uploadRequest,
-            Authentication authentication
+            @Valid @ModelAttribute DocumentUploadRequest uploadRequest
     ) throws IOException {
-        DocumentVersion version = documentService.uploadFile(uploadRequest, authentication);
+        DocumentVersion version = documentService.uploadFile(uploadRequest);
 
         Document document = version.getDocument();
 
@@ -50,24 +46,17 @@ public class DocumentsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(documentUploadResponse);
     }
 
-    @QueryMapping
-    public DocumentPageDto getDocumentsByUserId(
-            Authentication authentication,
-            @Argument int pageNumber,
-            @Argument int pageSize
-    ){
-        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
-        Long id = Optional.of(userPrincipal)
-                .orElseThrow(() -> new RuntimeException(""))
-                .getId();
+    @DeleteMapping
+    public ResponseEntity<Integer> deleteDocuments(
+            @Valid @RequestBody @NotNull List<@NotEmpty Long> ids){
 
-        return documentService.getDocuments(id, pageNumber, pageSize);
+        Integer deletedDocuments = documentService.deleteAllById(ids);
+        return ResponseEntity.ok(deletedDocuments);
     }
 
-    @GetMapping("/files/{key}")
-    public ResponseEntity<String> getPresignedObjectRequest(@PathVariable @NotBlank String key){
-        String signedGetUrl = s3Service.generateGetPresignedURL(key);
-        return ResponseEntity.ok(signedGetUrl);
+    @QueryMapping
+    public DocumentPageDto getDocumentsByUserId(@Argument int pageNumber, @Argument int pageSize){
+        return documentService.getDocuments(pageNumber, pageSize);
     }
 
 }

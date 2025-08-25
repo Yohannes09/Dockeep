@@ -1,6 +1,5 @@
-package com.dockeep.user;
+package com.dockeep.user.model;
 
-import com.dockeep.authorization.entity.Role;
 import com.dockeep.document.entity.Document;
 import com.dockeep.document.entity.DocumentShare;
 import jakarta.persistence.*;
@@ -16,9 +15,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table
@@ -46,10 +43,10 @@ public class User {
     @NotBlank
     private String lastName;
 
-    @OneToMany(mappedBy = "owner")
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
     private List<Document> documents = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<DocumentShare> sharedDocuments = new ArrayList<>();
 
     @Column(name = "created_at", updatable = false)
@@ -63,11 +60,4 @@ public class User {
     @Column(nullable = false)
     private String status;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<Role> roles = new HashSet<>();
 }
