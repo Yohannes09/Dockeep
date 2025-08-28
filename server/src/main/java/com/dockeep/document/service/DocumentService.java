@@ -9,9 +9,9 @@ import com.dockeep.document.mapper.DocumentMapper;
 import com.dockeep.document.repository.DocumentRepository;
 import com.dockeep.document.request.DocumentUploadRequest;
 import com.dockeep.s3.S3Service;
+import com.dockeep.user.repository.CachedUserRepository;
 import com.dockeep.user.util.PrincipalExtractor;
 import com.dockeep.user.model.User;
-import com.dockeep.user.UserService;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -28,14 +28,14 @@ public class DocumentService {
     private final DocumentMapper documentMapper;
     private final PrincipalExtractor principalExtractor;
     private final S3Service s3Service;
-    private final UserService userService;
+    private final CachedUserRepository cachedUserRepository;
     private final DocumentRepository documentRepository;
 
 
     @Transactional
     public DocumentVersion uploadFile(DocumentUploadRequest uploadRequest) throws IOException {
         Long ownerId = principalExtractor.extract().getId();
-        User owner = userService.findEntityById(ownerId);
+        User owner = cachedUserRepository.findUserEntityById(ownerId);
 
         Document document = switch (uploadRequest.documentId()) {
             case null -> Document.builder()

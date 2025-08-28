@@ -5,43 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5dea37a9-1b40-4bb7-92f9-83baab83d7ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/config/GraphQLConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/s3/S3ServiceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/util/PrincipalExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/util/PrincipalExtractorConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/util/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/config/JwtFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/config/KafkaConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/config/RedisConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/repository/CachedUserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/authorization/entity/Permission.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/authorization/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/authorization/repository/PermissionRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/authorization/repository/RoleRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/config/DataSourceConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/config/DataSourceConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/DocumentsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/DocumentsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/dto/DocumentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/dto/DocumentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/entity/Document.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/entity/Document.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/entity/DocumentShare.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/entity/DocumentShare.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/entity/DocumentVersion.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/entity/DocumentVersion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/mapper/DocumentMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/mapper/DocumentMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/repository/DocumentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/repository/DocumentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/service/DocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/document/service/DocumentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/model/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/UserPrincipal.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/model/UserPrincipal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/repository/UserRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application-prod.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application-prod.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/constant/Common.graphqls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/constant/Permission.graphqls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/mutations/DocumentMutations.graphqls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/mutations/ShareMutations.graphqls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/mutations/UserMutations.graphqls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/queries/userQueries.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/graphql/queries/userQueries.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/schema.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/graphql/schema.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/types/Document.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/graphql/types/Document.graphqls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/resources/graphql/types/User.graphqls" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/graphql/types/User.graphqls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/model/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/model/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/util/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/java/com/dockeep/user/util/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/resources/application-dev.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

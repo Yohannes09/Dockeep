@@ -27,6 +27,9 @@ public class User {
     @Id
     private Long id;
 
+    @Column(nullable = false, updatable = false)
+    private Object domainIdentifier;
+
     @Column(nullable = false, unique = true)
     @Email
     private String email;
