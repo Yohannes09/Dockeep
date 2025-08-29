@@ -18,17 +18,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
+@Table(name = "users")
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
     @Id
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "document_id_sequence"
+    )
+    @SequenceGenerator(
+            name = "user_id_sequence",
+            sequenceName = "user_id_sequence",
+            initialValue = 13_957_103,
+            allocationSize = 11
+    )
     private Long id;
 
     @Column(nullable = false, updatable = false)
-    private Object domainIdentifier;
+    private String domainIdentifier;
 
     @Column(nullable = false, unique = true)
     @Email

@@ -10,7 +10,6 @@ import java.util.*;
 
 @Entity
 @Table(
-        name = "document",
         indexes = @Index(name = "idx_docs_owner_id", columnList = "owner_id")
 )
 @NoArgsConstructor

@@ -24,7 +24,7 @@ public class RedisConfig {
 
     @Bean("prodRedisConnectionFactory")
     @Profile("prod")
-    public RedisConnectionFactory redisConnectionFactory(
+    public RedisConnectionFactory externallyConfiguredRedisConnectionFactory(
             @Value("${cache.host}") String hostName,
             @Value("${cache.port:6379}") int port
     ) {

@@ -6,6 +6,7 @@ import com.dockeep.user.model.UserDto;
 import com.dockeep.user.util.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.Objects;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+@Service
 @RequiredArgsConstructor
 public class CachedUserRepository {
     private static final String KEY_PREFIX = "dockeep:users:";
@@ -71,8 +73,9 @@ public class CachedUserRepository {
         }
 
         String key = KEY_PREFIX.concat(user.getUsername());
+        User savedUser = userRepository.save(user);
 
-        UserDto userDto = Optional.of(userRepository.save(user))
+        UserDto userDto = Optional.of(savedUser)
                 .map(userMapper::entityToDto)
                 .orElseThrow();
         redisTemplate.opsForValue().set(key, userDto);
